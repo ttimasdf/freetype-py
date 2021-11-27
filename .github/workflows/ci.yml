@@ -47,8 +47,8 @@ jobs:
         CIBW_BUILD: "cp36-win32"
         CIBW_ENVIRONMENT: "FREETYPEPY_BUNDLE_FT=yes PYTHON_ARCH=32"
         CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
-        CIBW_TEST_COMMAND: "pytest {project}/tests"
-        CIBW_TEST_REQUIRES: "pytest"
+#         CIBW_TEST_COMMAND: "pytest {project}/tests"
+#         CIBW_TEST_REQUIRES: "pytest"
 
     - uses: actions/upload-artifact@v2
       with:
