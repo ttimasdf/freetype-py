@@ -4,7 +4,7 @@ name: Build
 
 on:
   push:
-    branches: [master]
+    branches: [master, build-*]
     # Sequence of patterns matched against refs/tags
     tags:
       - 'v*'  # Push events to matching v*, i.e. v1.0, v20.15.10
@@ -18,7 +18,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [windows-latest]
 
     steps:
     - uses: actions/checkout@v2
@@ -44,8 +44,8 @@ jobs:
       env:
         # The packaged FreeType library is independent of the Python ABI so we only
         # need to build it once.
-        CIBW_BUILD: "cp36-*x86_64 cp36-*amd64"
-        CIBW_ENVIRONMENT: "FREETYPEPY_BUNDLE_FT=yes PYTHON_ARCH=64"
+        CIBW_BUILD: "cp36-win32"
+        CIBW_ENVIRONMENT: "FREETYPEPY_BUNDLE_FT=yes PYTHON_ARCH=32"
         CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
         CIBW_TEST_COMMAND: "pytest {project}/tests"
         CIBW_TEST_REQUIRES: "pytest"
